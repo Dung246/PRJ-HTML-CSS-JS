@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Management</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper" id="loginFormWrapper">
+            <h2>Đăng nhập</h2>
+            <form id="loginForm">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail">
+                <span class="error-message" id="loginEmailError"></span>
+
+                <label for="loginPassword">Mật khẩu</label>
+                <input type="password" id="loginPassword">
+                <span class="error-message" id="loginPasswordError"></span>
+
+                <button type="submit" class="blue-button">Đăng nhập</button>
+            </form>
+            <p class="switch-link">Chưa có tài khoản? <a href="#" id="switchToRegister">Đăng ký ngay</a></p>
+        </div>
+        <div class="form-wrapper" id="registerFormWrapper" style="display: none;">
+            <h2>Đăng ký</h2>
+            <form id="registerForm">
+                <label for="registerName">Họ và tên</label>
+                <input type="text" id="registerName">
+                <span class="error-message" id="registerNameError"></span>
+
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail">
+                <span class="error-message" id="registerEmailError"></span>
+
+                <label for="registerPassword">Mật khẩu</label>
+                <input type="password" id="registerPassword">
+                <span class="error-message" id="registerPasswordError"></span>
+
+                <label for="confirmPassword">Xác nhận mật khẩu</label>
+                <input type="password" id="confirmPassword">
+                <span class="error-message" id="confirmPasswordError"></span>
+
+                <button type="submit" class="blue-button">Đăng ký</button>
+            </form>
+            <p class="switch-link">Đã có tài khoản? <a href="#" id="switchToLogin">Đăng nhập</a></p>
+        </div>
+    </div>
+    <script src="/js/index.js"></script>
+</body>
+</html>
