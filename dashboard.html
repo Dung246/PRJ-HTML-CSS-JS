@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <a href="#">Quản lý lịch</a>
+        <a href="#">Quản lý dịch vụ</a>
+        <a href="#">Trang chủ</a>
+        <a href="#" style="color: red;">Đăng xuất</a>
+    </div>
+    <div class="content">
+        <h2>Thống kê lịch tập</h2>
+        <p class="stats">Tổng số lịch Gym: <span id="totalGym">0</span></p>
+        <canvas id="myChart" width="400" height="200"></canvas>
+        <h2>Danh sách lịch tập</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Lớp học</th>
+                    <th>Ngày tập</th>
+                    <th>Khung giờ</th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="scheduleTable">
+            </tbody>
+        </table>
+    </div>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

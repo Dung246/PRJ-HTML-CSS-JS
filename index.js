@@ -1,126 +1,151 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const switchToRegister = document.getElementById('switchToRegister');
-    const switchToLogin = document.getElementById('switchToLogin');
-    const loginWrapper = document.getElementById('loginFormWrapper');
-    const registerWrapper = document.getElementById('registerFormWrapper');
+  let users = JSON.parse(localStorage.getItem('users')) || [];
 
-    switchToRegister.addEventListener('click', function (event) {
-        event.preventDefault();
-        loginWrapper.style.display = 'none';
-        registerWrapper.style.display = 'block';
-    });
+  if (!users.some(user => user.email === "admin@gym.com")) {
+      users.push({
+          name: "Admin",
+          email: "admin@gym.com",
+          password: "admin123"
+      });
+      localStorage.setItem('users', JSON.stringify(users));
+  }
+});
 
-    switchToLogin.addEventListener('click', function (event) {
-        event.preventDefault();
-        registerWrapper.style.display = 'none';
-        loginWrapper.style.display = 'block';
-    });
+document.addEventListener('DOMContentLoaded', function () {
+  const loginFormWrapper = document.getElementById('loginFormWrapper');
+  const registerFormWrapper = document.getElementById('registerFormWrapper');
 
-    function showError(inputId, message) {
-        document.getElementById(inputId + 'Error').textContent = message;
-    }
-    function clearError(inputId) {
-        document.getElementById(inputId + 'Error').textContent = '';
-    }
+  document.getElementById('switchToRegister').addEventListener('click', function (event) {
+      event.preventDefault();
+      loginFormWrapper.style.display = 'none';
+      registerFormWrapper.style.display = 'block';
+  });
 
-    function validateEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
+  document.getElementById('switchToLogin').addEventListener('click', function (event) {
+      event.preventDefault();
+      registerFormWrapper.style.display = 'none';
+      loginFormWrapper.style.display = 'block';
+  });
+});
 
-    registerForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        let valid = true;
+function showError(inputId, message) {
+  const inputField = document.getElementById(inputId);
+  let errorSpan = inputField.nextElementSibling;
+  errorSpan.textContent = message;
+  errorSpan.style.color = "red";
+}
 
-        const name = document.getElementById('registerName');
-        const email = document.getElementById('registerEmail');
-        const password = document.getElementById('registerPassword');
-        const confirmPassword = document.getElementById('confirmPassword');
-        if (!name.value.trim()) {
-            showError('registerName', 'Họ và tên không được để trống');
-            valid = false;
-        } else {
-            clearError('registerName');
-        }
-        if (!email.value.trim()) {
-            showError('registerEmail', 'Email không được để trống');
-            valid = false;
-        } else if (!validateEmail(email.value.trim())) {
-            showError('registerEmail', 'Email không đúng định dạng');
-            valid = false;
-        } else {
-            clearError('registerEmail');
-        }
+function clearError(inputId) {
+  const inputField = document.getElementById(inputId);
+  let errorSpan = inputField.nextElementSibling;
+  errorSpan.textContent = "";
+}
 
-        if (!password.value) {
-            showError('registerPassword', 'Mật khẩu không được để trống');
-            valid = false;
-        } else if (password.value.includes(" ")) {
-            showError('registerPassword', 'Mật khẩu không được chứa dấu cách');
-            valid = false;
-        } else if (password.value.length < 8) {
-            showError('registerPassword', 'Mật khẩu tối thiểu 8 ký tự');
-            valid = false;
-        } else {
-            clearError('registerPassword');
-        }
-        if (!confirmPassword.value) {
-            showError('confirmPassword', 'Mật khẩu xác nhận không được để trống');
-            valid = false;
-        } else if (password.value !== confirmPassword.value) {
-            showError('confirmPassword', 'Mật khẩu không trùng khớp');
-            valid = false;
-        } else {
-            clearError('confirmPassword');
-        }
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
-        if (valid) {
-            let users = JSON.parse(localStorage.getItem('users')) || [];
-            if (users.some(user => user.email === email.value.trim())) {
-                showError('registerEmail', 'Email đã tồn tại');
-                return;
-            }
-            users.push({
-                name: name.value.trim(),
-                email: email.value.trim(),
-                password: password.value
-            });
-            localStorage.setItem('users', JSON.stringify(users));
-            window.location.href = "/";
-        }
-    });
+document.getElementById('registerForm').addEventListener('submit', function (event) {
+  event.preventDefault();
 
-    loginForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        let valid = true;
-        const email = document.getElementById('loginEmail');
-        const password = document.getElementById('loginPassword');
-        if (!email.value.trim()) {
-            showError('loginEmail', 'Email không được để trống');
-            valid = false;
-        } else if (!validateEmail(email.value.trim())) {
-            showError('loginEmail', 'Email không đúng định dạng');
-            valid = false;
-        } else {
-            clearError('loginEmail');
-        }
-        if (!password.value) {
-            showError('loginPassword', 'Mật khẩu không được để trống');
-            valid = false;
-        } else {
-            clearError('loginPassword');
-        }
+  let valid = true;
+  const name = document.getElementById('registerName');
+  const email = document.getElementById('registerEmail');
+  const password = document.getElementById('registerPassword');
+  const confirmPassword = document.getElementById('confirmPassword');
 
-        if (valid) {
-            let users = JSON.parse(localStorage.getItem('users')) || [];
-            const user = users.find(user => user.email === email.value.trim() && user.password === password.value);
-            if (user) {
-                window.location.href = "/";
-            } else {
-                showError('loginPassword', 'Email hoặc mật khẩu không đúng');
-            }
-        }
-    });
+  if (!name.value.trim()) {
+      showError('registerName', 'Tên không được để trống');
+      valid = false;
+  } else {
+      clearError('registerName');
+  }
+
+  if (!email.value.trim()) {
+      showError('registerEmail', 'Email không được để trống');
+      valid = false;
+  } else if (!validateEmail(email.value.trim())) {
+      showError('registerEmail', 'Email không hợp lệ');
+      valid = false;
+  } else {
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      if (users.some(user => user.email === email.value.trim())) {
+          showError('registerEmail', 'Email đã tồn tại');
+          valid = false;
+      } else {
+          clearError('registerEmail');
+      }
+  }
+
+  if (!password.value) {
+      showError('registerPassword', 'Mật khẩu không được để trống');
+      valid = false;
+  } else if (password.value.includes(' ') || password.value.length < 8) {
+      showError('registerPassword', 'Mật khẩu ít nhất 8 ký tự và không chứa dấu cách');
+      valid = false;
+  } else {
+      clearError('registerPassword');
+  }
+
+  if (!confirmPassword.value) {
+      showError('confirmPassword', 'Vui lòng nhập lại mật khẩu');
+      valid = false;
+  } else if (password.value !== confirmPassword.value) {
+      showError('confirmPassword', 'Mật khẩu không khớp');
+      valid = false;
+  } else {
+      clearError('confirmPassword');
+  }
+
+  if (valid) {
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      users.push({
+          name: name.value.trim(),
+          email: email.value.trim(),
+          password: password.value
+      });
+      localStorage.setItem('users', JSON.stringify(users));
+      alert("Đăng ký thành công!");
+      window.location.href = "index.html"; 
+  }
+});
+
+document.getElementById('loginForm').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  let valid = true;
+  const email = document.getElementById('loginEmail');
+  const password = document.getElementById('loginPassword');
+
+  if (!email.value.trim()) {
+      showError('loginEmail', 'Email không được để trống');
+      valid = false;
+  } else if (!validateEmail(email.value.trim())) {
+      showError('loginEmail', 'Email không hợp lệ');
+      valid = false;
+  } else {
+      clearError('loginEmail');
+  }
+
+  if (!password.value) {
+      showError('loginPassword', 'Mật khẩu không được để trống');
+      valid = false;
+  } else {
+      clearError('loginPassword');
+  }
+
+  if (valid) {
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      const user = users.find(user => user.email === email.value.trim() && user.password === password.value);
+
+      if (user) {
+          if (user.email === "admin@gym.com") {
+              window.location.href = "dashboard.html";
+          } else {
+              window.location.href = "gymWeb.html"; 
+          }
+      } else {
+          showError('loginPassword', 'Email hoặc mật khẩu không đúng');
+      }
+  }
 });
