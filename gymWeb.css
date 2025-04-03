@@ -168,7 +168,7 @@ body {
 }
 
 .schedule-button {
-  padding: 10px 20px;
+  padding: 10px 30px;
   background: #3B82F6;
   color: white;
   border: none;
@@ -177,6 +177,7 @@ body {
   font-size: 16px;
   transition: background 0.3s;
   margin-top: 10px; 
+  padding-left: 20px;
 }
 
 .schedule-button:hover {

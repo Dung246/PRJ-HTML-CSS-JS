@@ -140,7 +140,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
 
       if (user) {
           if (user.email === "admin@gym.com") {
-              window.location.href = "dashboard.html";
+              window.location.href = "dashboard-admin.html";
           } else {
               window.location.href = "gymWeb.html"; 
           }
