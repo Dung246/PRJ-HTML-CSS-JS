@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/dashboard-admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Admin Dashboard</h2>
+    <a href="dashboard-admin.html">Quản lý lịch</a>
+    <a href="dashboard-service.html">Quản lý dịch vụ</a>
+    <a href="gymWeb.html">Trang chủ</a>
+    <a href="index.html" style="color: red;">Đăng xuất</a>
+  </div>
+
+  <div class="content">
+    <h2>Thống kê lịch tập</h2>
+    <div class="cards">
+      <div class="card">
+        <p>Tổng số lịch Gym</p>
+        <h3 id="totalGym" style="color: #2563EB;">0</h3>
+      </div>
+      <div class="card">
+        <p>Tổng số lịch Yoga</p>
+        <h3 id="totalYoga" style="color: #059669;">0</h3>
+      </div>
+      <div class="card">
+        <p>Tổng số lịch Zumba</p>
+        <h3 id="totalZumba" style="color: #7C3AED;">0</h3>
+      </div>
+    </div>
+
+    <canvas id="myChart" height="120"></canvas>
+
+    <h4>Bộ lọc</h4>
+    <div class="filters">
+       <select id="classes">
+        <option>Tất cả</option>
+        <option value="Gym">Gym</option>
+        <option value="Yoga">Yoga</option>
+        <option value="Zumba">Zumba</option>
+       </select>
+      <input type="email" id="email" placeholder="Tìm theo email">
+      <input type="date" id="day">
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Lớp học</th>
+          <th>Ngày tập</th>
+          <th>Khung giờ</th>
+          <th>Họ tên</th>
+          <th>Email</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody id="scheduleTable"></tbody>
+    </table>
+  </div>
+
+  <div id="editModal" class="modal" >
+    <div class="modal-content">
+      <h3>Chỉnh sửa lịch</h3>
+      <label>Lớp học</label>
+      <input id="editClass" />
+      <label>Ngày tập</label>
+      <input id="editDate" type="date" />
+      <label>Khung giờ</label>
+      <input id="editTime" />
+      <label>Họ tên</label>
+      <input id="editName" />
+      <label>Email</label>
+      <input id="editEmail" />
+      <button onclick="saveEdit()" style="background-color: #059669;">Lưu</button>
+      <button onclick="closeModal()" style="background-color: #059669;">Hủy</button>
+    </div>
+  </div>
+
+  <script src="/js/dashboard-admin.js"></script>
+</body>
+</html>

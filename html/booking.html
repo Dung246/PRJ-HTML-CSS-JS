@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý lịch tập</title>
+    <link rel="stylesheet" href="/css/booking.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">GYM MANAGEMENT</div>
+        <ul class="nav-links">
+            <li><a href="index.html" id="homePage">Trang chủ</a></li>
+            <li><a href="booking.html" id="bookingPage">Lịch tập</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="header-container">
+            <h1>Quản lý lịch tập</h1>
+            <button id="openModal" class="right-button">Đặt lịch mới</button>
+        </div>
+        <table >
+            <thead>
+                <tr>
+                    <th>Lớp học</th>
+                    <th>Ngày tập</th>
+                    <th>Khung giờ</th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody id="scheduleList"></tbody>
+        </table>
+    </div>
+    
+    <div id="scheduleModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Đặt lịch mới</h2>
+            <form id="scheduleForm">
+                <div class="form-group">
+                    <label>Lớp học:</label>
+                    <select id="classType">
+                        <option value="Gym">Gym</option>
+                        <option value="Yoga">Yoga</option>
+                        <option value="Zumba">Zumba</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Ngày tập:</label>
+                    <input type="date" id="date">
+                    <span class="error-message" id="dateError"></span>
+                </div>
+                <div class="form-group">
+                    <label>Khung giờ:</label>
+                    <input type="time" id="time">
+                    <span class="error-message" id="timeError"></span>
+                </div>
+                <div class="form-group">
+                    <label>Họ tên:</label>
+                    <input type="text" id="fullName" >
+                    <span class="error-message" id="nameError"></span>
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="email" >
+                    <span class="error-message" id="emailError"></span>
+                </div>
+                <button type="submit">Lưu</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h3>Bạn có chắc chắn muốn xóa lịch này?</h3>
+            <button id="confirmDelete">Xóa</button>
+            <button id="cancelDelete">Hủy</button>
+        </div>
+    </div>
+     
+    <script src="/js/booking.js"></script>
+</body>
+</html>

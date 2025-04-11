@@ -1,0 +1,93 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.container {
+  width: 320px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-size: small;
+  color: #374151;
+}
+a{
+  color: #2563EB;
+}
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.blue-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #3B82F6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.blue-button:hover {
+  background-color: #2563eb;
+}
+
+.switch-link {
+  text-align: center;
+  margin-top: 10px;
+  font-size: small;
+}
+
+.switch-link a {
+  text-decoration: none;
+  color: blue;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  display: block;
+  height: 16px;
+}
+
+@media (min-width:480px) {
+  form {
+    max-width: 400px;
+    padding: 0 10px;
+  }
+}
+
+@media (min-width:667px) {
+  form {
+    max-width: 600px;
+    padding: 0 10px;
+  }
+}
+
+@media (min-width:1194px) {
+  form {
+    max-width: 800px;
+    padding: 0 10px;
+  }
+}
